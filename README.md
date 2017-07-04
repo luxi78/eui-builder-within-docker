@@ -17,6 +17,6 @@ Issues
 Tested
 ------
 
-* Android Marshmallow `android-6.0.1_r72`
+* Android Marshmallow `x3 mainline`
 * Android Nougat `android-7.0.0_r14`
 
