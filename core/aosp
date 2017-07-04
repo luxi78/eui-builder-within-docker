@@ -70,6 +70,8 @@ fi
 msginfo  Runing docker container from $AOSP_IMAGE...
 docker run $AOSP_ARGS $AOSP_HOST_ID_ARGS $SSH_AUTH_ARGS $AOSP_EXTRA_ARGS \
     -v "$AOSP_VOL_AOSP:/aosp" -v "$AOSP_VOL_CCACHE:/tmp/ccache" \
+    --add-host=diana.devops.letv.com:10.140.70.24 \
+    --add-host=diana-lb.devops.letv.com:10.76.0.79 \
     $AOSP_IMAGE $@
 
 if [ ! -z ${ssh_agent_pid+x} ]; then
