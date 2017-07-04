@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export AOSP_VERSION=marshmallow
+export DOCKER_RUN_SCRIPT=repo_init_x3_main_line
+
+physical_path="$(cd $(dirname $(readlink -f $0)) && pwd -P)"
+$physical_path/../core/build-in-docker.sh
+
+export DOCKER_RUN_SCRIPT=build_x3_user_debug
+$physical_path/../core/build-in-docker.sh

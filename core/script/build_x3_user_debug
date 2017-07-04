@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cpus=$(grep ^processor /proc/cpuinfo | wc -l)
+. build/envsetup.sh
+lunch full_x600-userdebug
+make -j $cpus
