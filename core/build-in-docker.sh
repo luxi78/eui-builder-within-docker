@@ -24,11 +24,6 @@
 #set -ex
 set -e
 
-msgerr(){
-    echo -e "\033[41;37m Error: $* \033[0m"
-}
-
-
 if [ "$1" = "docker" ]; then #代码在docker中运行,当前目录已经在/aosp下（即android源码的根目录下)
     #TEST_BRANCH=${TEST_BRANCH:-android-7.0.0_r14}
     #TEST_URL=${TEST_URL:-https://aosp.tuna.tsinghua.edu.cn/platform/manifest}
@@ -49,6 +44,10 @@ if [ "$1" = "docker" ]; then #代码在docker中运行,当前目录已经在/aos
     . /usr/local/bin/aosp-script.sh 
 
 else    #代码在docker外运行
+    physical_path="$(cd $(dirname $(readlink -f $0)) && pwd -P)"
+    
+    . $physical_path/util
+
     if [ "$AOSP_VERSION" = "nougat" ]; then
         export AOSP_IMAGE="kylemanna/aosp:7.0-nougat"
         ssh_config_file="ssh_config_n" 
@@ -60,7 +59,6 @@ else    #代码在docker外运行
         exit 1 
     fi
 
-    physical_path="$(cd $(dirname $(readlink -f $0)) && pwd -P)"
 
     if [ -z ${DOCKER_RUN_SCRIPT+x} ]; then
         msgerr The value of DOCKER_RUN_SCRIPT must be specified!

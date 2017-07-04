@@ -1,0 +1,9 @@
+#!/bin/bash
+msgerr(){
+    echo -e "\033[41;37m Error: $* \033[0m"
+}
+
+msginfo() {
+    echo -e "\033[43;37m $* \033[0m"
+}
+

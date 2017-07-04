@@ -18,6 +18,9 @@ AOSP_VOL_AOSP=${AOSP_VOL_AOSP%/} # Trim trailing slash if needed
 AOSP_VOL_CCACHE=${AOSP_VOL_CCACHE:-$AOSP_VOL/ccache}
 AOSP_VOL_CCACHE=${AOSP_VOL_CCACHE%/} # Trim trailing slash if needed
 
+physical_path="$(cd $(dirname $(readlink -f $0)) && pwd -P)"
+. $physical_path/util
+
 # Convenience function
 function aosp_create_dir_if_needed {
   directory=$1
@@ -43,13 +46,33 @@ if [ $uid -ne "0" ]; then
     AOSP_HOST_ID_ARGS="-e USER_ID=$uid -e GROUP_ID=$(id -g)"
 fi
 
-if [ -S "$SSH_AUTH_SOCK" ]; then
-    SSH_AUTH_ARGS="-v $SSH_AUTH_SOCK:/tmp/ssh_auth -e SSH_AUTH_SOCK=/tmp/ssh_auth"
+
+if [ ! -S "$SSH_AUTH_SOCK" ]; then
+    if [ ! -e ~/.ssh/id_rsa ]; then
+        msgerr ~/.ssh/id_rsa wasn\'t found
+        exit 1
+    fi
+
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa 
+    ssh_agent_pid=$SSH_AGENT_PID
+    msginfo New ssh-agent with pid:$ssh_agent_pid
 fi
 
-echo -e "\033[43;37m Runing docker container from $AOSP_IMAGE... \033[0m"
+if [ -S "$SSH_AUTH_SOCK" ]; then
+    SSH_AUTH_ARGS="-v $SSH_AUTH_SOCK:/tmp/ssh_auth -e SSH_AUTH_SOCK=/tmp/ssh_auth"
+else
+   #错误退出 
+   msgerr ssh-agent ran abnormally 
+   exit 1
+fi
+
+msginfo  Runing docker container from $AOSP_IMAGE...
 docker run $AOSP_ARGS $AOSP_HOST_ID_ARGS $SSH_AUTH_ARGS $AOSP_EXTRA_ARGS \
     -v "$AOSP_VOL_AOSP:/aosp" -v "$AOSP_VOL_CCACHE:/tmp/ccache" \
     $AOSP_IMAGE $@
 
-
+if [ ! -z ${ssh_agent_pid+x} ]; then
+    kill $ssh_agent_pid
+    msginfo ssh-agent with pid:$ssh_agent_pid has been killed
+fi
