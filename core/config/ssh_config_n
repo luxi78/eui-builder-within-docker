@@ -1,0 +1,4 @@
+Host *
+    #IdentityFile /root/.ssh/id_rsa
+    StrictHostKeyChecking no
+    KexAlgorithms +diffie-hellman-group1-sha1

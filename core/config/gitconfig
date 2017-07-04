@@ -1,0 +1,19 @@
+[user]
+    name = luxi
+    email = luxi@le.com
+[core]
+    editor = vi
+    
+[color]
+    ui = auto
+
+[url "ssh://luxi@diana-lb.devops.letv.com:29418/"]
+    InsteadOf = "dianar:"
+[url "ssh://luxi@diana.devops.letv.com:29418/"]
+    PushInsteadOf = "dianar:"
+
+[url "ssh://luxi@diana.devops.letv.com:29418"]
+    InsteadOf = "https://android.googlesource.com"
+[url "ssh://luxi@minerva.devops.letv.com:29418/tools/repo"]
+    InsteadOf=https://gerrit.googlesource.com/git-repo
+

@@ -1,0 +1,22 @@
+Host *
+    #IdentityFile /root/.ssh/id_rsa
+    StrictHostKeyChecking no
+
+Host athenar
+    User luxi
+    Port 29418
+    Hostname athena
+    IdentityFile ~/.ssh/id_rsa
+
+Host minervar
+    User luxi
+    Port 29418
+    Hostname minerva
+    IdentityFile ~/.ssh/id_rsa
+
+Host dianar
+    User luxi
+    Port 29418
+    Hostname diana
+    IdentityFile ~/.ssh/id_rsa
+

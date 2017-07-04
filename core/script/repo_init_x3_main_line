@@ -1,0 +1,2 @@
+repo init --depth 1 -u dianar:letv6795_m/manifests.git -b master -m letv/ALUCARD_M_DEV_LEUI.xml --repo-url=dianar:tools/repo.git
+repo sync

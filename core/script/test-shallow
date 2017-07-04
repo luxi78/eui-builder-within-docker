@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo it\'s in build-test file
+exit 126

@@ -1,0 +1,3 @@
+Host *
+    #IdentityFile /root/.ssh/id_rsa
+    StrictHostKeyChecking no
