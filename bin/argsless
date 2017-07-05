@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#export AOSP_VERSION=marshmallow
+#export AOSP_VERSION=nougat
+
+#export DOCKER_RUN_SCRIPT=test-shallow
+#export DOCKER_RUN_SCRIPT=test-bash
+
+physical_path="$(cd $(dirname $(readlink -f $0)) && pwd -P)"
+$physical_path/../core/build-in-docker.sh
