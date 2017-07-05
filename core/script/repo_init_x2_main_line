@@ -1,0 +1,3 @@
+repo init -u dianar:msm8996/platform/letv/manifest.git -b letv_master -m letv/RUBY_DEV_LEUI.xml --repo-url=dianar:tools/repo.git
+
+repo sync
