@@ -49,10 +49,10 @@ else    #代码在docker外运行
     . $physical_path/util
 
     if [ "$AOSP_VERSION" = "nougat" ]; then
-        export AOSP_IMAGE="kylemanna/aosp:7.0-nougat"
+        export AOSP_IMAGE="luxi78/aosp:re-7.0-nougat"
         ssh_config_file="ssh_config_n" 
     elif [ "$AOSP_VERSION" = "marshmallow" ]; then
-        export AOSP_IMAGE="luxi78/aosp:6.0-marshmallow"
+        export AOSP_IMAGE="luxi78/aosp:re-6.0-marshmallow"
         ssh_config_file="ssh_config_m" 
     else
         msgerr The value of AOSP_VERSION must between marshmallow and nougat!
