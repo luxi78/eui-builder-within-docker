@@ -1,7 +1,7 @@
 EUI Building System On Docker 
 ====================================================
 
-利用docker构建eui各项手机工程，隔离个版本的环境依赖
+利用Docker构建EUI各项手机工程，隔离个版本的环境依赖
 
 Requirement
 ----------
@@ -17,6 +17,6 @@ Issues
 Tested
 ------
 
-* Android Marshmallow `x3 mainline`
+* Android Marshmallow `x3 mainline` , `x2 mainline`
 * Android Nougat `android-7.0.0_r14`
 
