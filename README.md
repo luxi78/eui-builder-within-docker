@@ -1,7 +1,7 @@
 EUI Building System On Docker 
 ====================================================
 
-利用Docker构建EUI各项手机工程，隔离个版本的环境依赖
+利用Docker构建EUI各项手机工程，隔离各版本的环境依赖
 
 Requirement
 ----------
